@@ -27,6 +27,15 @@ Open http://localhost:8080
 
 ## Deploy with GitHub Pages
 
-The site is hosted from the `main` branch. After pushing to GitHub, enable Pages under repo **Settings → Pages → Deploy from branch → main / root**.
+Push this folder to a GitHub repo, then enable Pages under **Settings → Pages → Deploy from branch → root**.
 
-Live URL: `https://khaira1g.github.io/portfolio/`
+Example:
+
+```bash
+cd ~/code/portfolio
+gh repo create khairally --public --source=. --remote=origin --push
+```
+
+Then enable GitHub Pages on the repo. Your site will be at `https://khaira1g.github.io/<repo-name>/`.
+
+Note: `khaira1g/portfolio` already contains an older React project. Use a new repo name (e.g. `khairally`) or replace that repo if you prefer.
