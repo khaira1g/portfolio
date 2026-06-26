@@ -33,14 +33,6 @@ a:hover {
 	text-decoration: underline;
 }
 
-pre {
-	flex-grow: 1;
-}
-
-audio {
-	display: none;
-}
-
 .artwork {
 	display: block;
 	margin: auto;
@@ -64,29 +56,6 @@ audio {
 	z-index: -1;
 }
 
-.marqueecontainer {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	position: absolute;
-	width: 35%;
-	left: 50%;
-	bottom: 7%;
-	transform: translateX(-50%);
-	white-space: nowrap;
-	font-size: 14px;
-}
-
-.marquee {
-	width: 420px;
-	overflow: hidden;
-	display: inline-block;
-	font-size: 15px;
-	margin: 0;
-	padding: 0;
-	white-space: nowrap;
-}
-
 .center {
 	position: fixed;
 	text-align: center;
@@ -96,39 +65,10 @@ audio {
 	padding-bottom: 50px;
 }
 
-.fade {
-	position: absolute;
-	animation: flyup 6s linear;
-	white-space: nowrap;
-	pointer-events: none;
-}
-
 @media (max-height: 700px) {
 	.artwork {
 		margin-bottom: 20px;
 		max-width: min(80vw, 360px);
-	}
-}
-
-@media (max-width: 600px) {
-	.marqueecontainer {
-		width: 90%;
-	}
-
-	.marquee {
-		width: 70vw;
-	}
-}
-
-@keyframes flyup {
-	0% {
-		opacity: 1;
-		transform: translateY(0);
-	}
-
-	100% {
-		opacity: 0;
-		transform: translateY(-5000%);
 	}
 }
 
