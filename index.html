@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>khairally.</title>
+    <meta name="description" content="khairally — personal site">
+    <link rel="stylesheet" href="./static/index.css">
+    <script defer src="./static/script.js"></script>
+</head>
+<body class="main">
+    <audio id="tune" loop></audio>
+    <div class="bg"></div>
+    <div class="center">
+        <img src="./static/logo.png" alt="khairally" class="artwork">
+        <nav id="links"></nav>
+    </div>
+    <div id="flyaway"></div>
+    <div class="marqueecontainer" onclick="music()" onwheel="volume(event)">
+        <pre>|</pre><marquee id="marquee" scrollamount="8">♪ click to play ♪</marquee><pre>|</pre>
+    </div>
+</body>
+</html>
