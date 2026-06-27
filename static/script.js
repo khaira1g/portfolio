@@ -21,50 +21,47 @@ function renderLinks() {
 
 renderLinks();
 
-// Logo shine effect on cursor proximity
-const artwork = document.querySelector('.artwork');
-const TRIGGER_DISTANCE = 200; // Distance in pixels to trigger shine
-const SHINE_RADIUS = 150;
+// Logo shine effect
+const wrapper = document.querySelector('.artwork-wrapper');
+const overlay = document.querySelector('.shine-overlay');
+const TRIGGER_DISTANCE = 200;
 
 document.addEventListener('mousemove', (e) => {
-	const rect = artwork.getBoundingClientRect();
-	const logoX = rect.left + rect.width / 2;
-	const logoY = rect.top + rect.height / 2;
+	if (!wrapper || !overlay) return;
 	
-	const cursorX = e.clientX;
-	const cursorY = e.clientY;
+	const rect = wrapper.getBoundingClientRect();
+	const wrapperX = rect.left + rect.width / 2;
+	const wrapperY = rect.top + rect.height / 2;
 	
 	const distance = Math.sqrt(
-		Math.pow(cursorX - logoX, 2) + Math.pow(cursorY - logoY, 2)
+		Math.pow(e.clientX - wrapperX, 2) + Math.pow(e.clientY - wrapperY, 2)
 	);
 	
-	// Calculate shine position relative to logo
-	const shineX = ((cursorX - rect.left) / rect.width) * 100;
-	const shineY = ((cursorY - rect.top) / rect.height) * 100;
+	// Calculate shine position
+	const shineX = Math.max(0, Math.min(100, ((e.clientX - rect.left) / rect.width) * 100));
+	const shineY = Math.max(0, Math.min(100, ((e.clientY - rect.top) / rect.height) * 100));
 	
-	artwork.style.setProperty('--shine-x', `${Math.max(0, Math.min(100, shineX))}%`);
-	artwork.style.setProperty('--shine-y', `${Math.max(0, Math.min(100, shineY))}%`);
+	overlay.style.setProperty('--shine-x', `${shineX}%`);
+	overlay.style.setProperty('--shine-y', `${shineY}%`);
 	
 	if (distance < TRIGGER_DISTANCE) {
-		artwork.classList.add('shine');
+		overlay.classList.add('active');
 	} else {
-		artwork.classList.remove('shine');
+		overlay.classList.remove('active');
 	}
 	
-	// Glitch effect on cursor near edges
+	// Glitch on edge proximity
 	const edgeDistance = Math.min(
-		cursorX,
-		window.innerWidth - cursorX,
-		cursorY,
-		window.innerHeight - cursorY
+		e.clientX,
+		window.innerWidth - e.clientX,
+		e.clientY,
+		window.innerHeight - e.clientY
 	);
 	
-	const EDGE_THRESHOLD = 80;
-	
-	if (edgeDistance < EDGE_THRESHOLD) {
+	if (edgeDistance < 80) {
 		document.body.classList.add('glitch');
 		setTimeout(() => {
 			document.body.classList.remove('glitch');
-		}, 300);
+		}, 200);
 	}
 });
